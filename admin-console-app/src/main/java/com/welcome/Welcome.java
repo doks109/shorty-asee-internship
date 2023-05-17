@@ -18,7 +18,7 @@ public class Welcome {
 
             switch (userInput){
                 case 1:
-
+                    ViewLinks.viewLinksMethod();
                     break;
                 case 2:
 
