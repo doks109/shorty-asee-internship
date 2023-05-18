@@ -13,19 +13,20 @@ public class ViewLinks {
     public static void viewLinksMethod() throws IOException {
         String excelFilePath = "shorty_entries.xlsx";
         String helper, ID = "ID", originalUrl = "Original URL", shortenedUrl = "Shortened URL";
-        int maxWidth = 0, flag = 0;
+        int maxWidth, flag = 0;
 
         FileInputStream inputStream = new FileInputStream(excelFilePath);
         XSSFWorkbook xssfworkbook = new XSSFWorkbook(inputStream);
         Sheet firstSheet = xssfworkbook.getSheetAt(0);
         // finding max width
+        maxWidth = originalUrl.length();
         for (int i = 0; i < firstSheet.getPhysicalNumberOfRows(); i++) {
             Row row = firstSheet.getRow(i);
             helper = String.valueOf(row.getCell(1));
             if(helper.length() > maxWidth){
                 maxWidth = helper.length();
             }
-            }
+        }
         // header print
         System.out.format("| %-8s| %-"+(maxWidth + 1)+"s| %-14s |\n", ID, originalUrl, shortenedUrl);
         System.out.printf("|---------|");

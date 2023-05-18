@@ -2,11 +2,11 @@ package com.welcome;
 import java.io.IOException;
 import java.util.Scanner;
 import viewLinks.ViewLinks;
+import enterNewLinks.EnterNewLinks;
 
 public class Welcome {
     public static void main(String[] args) throws IOException {
         Scanner myObj = new Scanner(System.in);
-        ViewLinks links = new ViewLinks();
         int userInput;
         do {
             System.out.println("Welcome to Shorty - your link shortening tool!\n\nPlease choose an option:");
@@ -21,7 +21,7 @@ public class Welcome {
                     ViewLinks.viewLinksMethod();
                     break;
                 case 2:
-
+                    EnterNewLinks.enterNewLinksMethod();
                     break;
                 case 3:
                     break;
