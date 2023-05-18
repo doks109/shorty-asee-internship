@@ -1,6 +1,4 @@
 package enterNewLinks.randomGenerator;
-import java.util.Random;
-
 
 public class RandomGenerator {
     public static String getAlphaNumericString() {

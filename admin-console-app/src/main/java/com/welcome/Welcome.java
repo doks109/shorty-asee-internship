@@ -1,6 +1,8 @@
 package com.welcome;
 import java.io.IOException;
 import java.util.Scanner;
+
+import deleteLinks.DeleteLinks;
 import viewLinks.ViewLinks;
 import enterNewLinks.EnterNewLinks;
 
@@ -24,6 +26,7 @@ public class Welcome {
                     EnterNewLinks.enterNewLinksMethod();
                     break;
                 case 3:
+                    DeleteLinks.deleteLinksMethod();
                     break;
                 case 0:
                     break;

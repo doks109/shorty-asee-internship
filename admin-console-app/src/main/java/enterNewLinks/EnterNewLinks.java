@@ -5,12 +5,9 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Scanner;
 
-import enterNewLinks.randomGenerator.RandomGenerator;
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import enterNewLinks.randomGenerator.RandomGenerator;
 public class EnterNewLinks {
     public static void enterNewLinksMethod() throws IOException {
         String userInputString;

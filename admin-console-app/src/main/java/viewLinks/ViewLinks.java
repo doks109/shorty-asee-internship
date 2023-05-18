@@ -1,5 +1,4 @@
 package viewLinks;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Iterator;
@@ -29,7 +28,7 @@ public class ViewLinks {
         }
         // header print
         System.out.format("| %-8s| %-"+(maxWidth + 1)+"s| %-14s |\n", ID, originalUrl, shortenedUrl);
-        System.out.printf("|---------|");
+        System.out.print("|---------|");
         for (int i = 0; i < (maxWidth + 2); i++) {
             System.out.print("-");
         }
