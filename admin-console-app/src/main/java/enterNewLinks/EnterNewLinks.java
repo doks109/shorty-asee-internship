@@ -1,12 +1,12 @@
 package enterNewLinks;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.Objects;
 import java.util.Scanner;
 
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFCell;
 
 public class EnterNewLinks {
     public static void enterNewLinksMethod() throws IOException {
@@ -15,10 +15,21 @@ public class EnterNewLinks {
         System.out.println("Now you can enter your link: ");
         userInputString = inputString.nextLine();
 
-        String excelFilePath = "shorty_entries.xlsx";
-        FileInputStream inputStream = new FileInputStream(excelFilePath);
-        XSSFWorkbook xssfworkbook = new XSSFWorkbook(inputStream);
-        Sheet firstSheet = xssfworkbook.getSheetAt(0);
+        XSSFWorkbook xssfworkbook;
+        Sheet firstSheet;
+        File file = new File("shorty_entries.xlsx");
+        if(file.exists() == false){
+            xssfworkbook = new XSSFWorkbook();
+            firstSheet = xssfworkbook.createSheet("Sheet 1");
+            OutputStream fileOut = new FileOutputStream("shorty_entries.xlsx");
+            xssfworkbook.write(fileOut);
+            fileOut.close();
+        }
+        FileInputStream inputStream = new FileInputStream(file);
+        xssfworkbook = new XSSFWorkbook(inputStream);
+        firstSheet = xssfworkbook.getSheetAt(0);
+
+
         // finding duplicates
         for (int i = 0; i < firstSheet.getPhysicalNumberOfRows(); i++) {
             Row row = firstSheet.getRow(i);
@@ -31,7 +42,7 @@ public class EnterNewLinks {
         int rowNumber = firstSheet.getPhysicalNumberOfRows();
             Row row = firstSheet.createRow(rowNumber);
             for (int j = 0; j < 3; j++) {
-                Cell cell = row.createCell(j);
+                XSSFCell cell = (XSSFCell) row.createCell(j);
                 switch(j){
                     case 0:
                         cell.setCellValue(rowNumber);
@@ -45,7 +56,7 @@ public class EnterNewLinks {
                 }
             }
         inputStream.close();
-        FileOutputStream os = new FileOutputStream(excelFilePath);
+        FileOutputStream os = new FileOutputStream(file);
         xssfworkbook.write(os);
         xssfworkbook.close();
         os.close();
