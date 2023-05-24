@@ -2,8 +2,7 @@ package enterNewLinks.randomGenerator;
 
 public class RandomGenerator {
     public static String getAlphaNumericString() {
-        String newString = "0123456789abcdefghijklmnopqrstuvxyz";
-
+        String newString = "0123456789abcdefghijklmnopqrstuvwxyz";
         StringBuilder sb = new StringBuilder(8);
 
         for (int i = 0; i < 8; i++) {

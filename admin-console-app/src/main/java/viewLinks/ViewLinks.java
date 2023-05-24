@@ -2,6 +2,7 @@ package viewLinks;
 import java.io.*;
 import java.util.Iterator;
 
+import openWokbook.OpenWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -12,19 +13,8 @@ public class ViewLinks {
         String helper, ID = "ID", originalUrl = "Original URL", shortenedUrl = "Shortened URL";
         int maxWidth, flag = 0;
 
-        XSSFWorkbook xssfworkbook;
-        Sheet firstSheet;
-        File file = new File("shorty_entries.xlsx");
-        if(file.exists() == false){
-            xssfworkbook = new XSSFWorkbook();
-            firstSheet = xssfworkbook.createSheet("Sheet 1");
-            OutputStream fileOut = new FileOutputStream("shorty_entries.xlsx");
-            xssfworkbook.write(fileOut);
-            fileOut.close();
-        }
-        FileInputStream inputStream = new FileInputStream(file);
-        xssfworkbook = new XSSFWorkbook(inputStream);
-        firstSheet = xssfworkbook.getSheetAt(0);
+        XSSFWorkbook xssfworkbook = OpenWorkbook.openWorkbookMethod();
+        Sheet firstSheet = xssfworkbook.getSheetAt(0);
 
         // finding max width
         maxWidth = originalUrl.length();
@@ -62,7 +52,6 @@ public class ViewLinks {
             System.out.println();
         }
         xssfworkbook.close();
-        inputStream.close();
         System.out.println();
     }
 }

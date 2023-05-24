@@ -3,8 +3,8 @@ import java.io.*;
 import java.util.Objects;
 import java.util.Scanner;
 
+import openWokbook.OpenWorkbook;
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 
@@ -15,20 +15,8 @@ public class EnterNewLinks {
         System.out.println("Now you can enter your link: ");
         userInputString = inputString.nextLine();
 
-        XSSFWorkbook xssfworkbook;
-        Sheet firstSheet;
-        File file = new File("shorty_entries.xlsx");
-        if(file.exists() == false){
-            xssfworkbook = new XSSFWorkbook();
-            firstSheet = xssfworkbook.createSheet("Sheet 1");
-            OutputStream fileOut = new FileOutputStream("shorty_entries.xlsx");
-            xssfworkbook.write(fileOut);
-            fileOut.close();
-        }
-        FileInputStream inputStream = new FileInputStream(file);
-        xssfworkbook = new XSSFWorkbook(inputStream);
-        firstSheet = xssfworkbook.getSheetAt(0);
-
+        XSSFWorkbook xssfworkbook = OpenWorkbook.openWorkbookMethod();
+        Sheet firstSheet = xssfworkbook.getSheetAt(0);
 
         // finding duplicates
         for (int i = 0; i < firstSheet.getPhysicalNumberOfRows(); i++) {
@@ -55,7 +43,8 @@ public class EnterNewLinks {
                         break;
                 }
             }
-        inputStream.close();
+        System.out.println("Link was successfully added!\n");
+        File file = new File("shorty_entries.xlsx");
         FileOutputStream os = new FileOutputStream(file);
         xssfworkbook.write(os);
         xssfworkbook.close();
