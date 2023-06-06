@@ -1,19 +1,13 @@
 package com.welcome;
 
+import hr.riteh.dominik.internship.welcome.Welcome;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import java.io.*;
-import java.io.IOException;
-
-import org.junit.jupiter.api.Test;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.InputMismatchException;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class WelcomeExceptionTest {

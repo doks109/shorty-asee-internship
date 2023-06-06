@@ -1,4 +1,4 @@
-package enterNewLinks.randomGenerator;
+package hr.riteh.dominik.internship.util;
 
 public class RandomGenerator {
     public static String getAlphaNumericString() {

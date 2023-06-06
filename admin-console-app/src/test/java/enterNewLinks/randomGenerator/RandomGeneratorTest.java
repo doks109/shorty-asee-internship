@@ -1,5 +1,6 @@
 package enterNewLinks.randomGenerator;
 
+import hr.riteh.dominik.internship.util.RandomGenerator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
