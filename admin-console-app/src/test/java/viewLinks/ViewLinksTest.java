@@ -19,7 +19,7 @@ public class ViewLinksTest {
         System.setOut(new PrintStream(outputStream));
 
         ExcelManager excel = new ExcelManager();
-        excel.viewLinksMethod();
+        excel.viewLinks();
 
         System.setOut(System.out);
 

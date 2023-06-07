@@ -19,13 +19,13 @@ public class Welcome {
 
             switch (userInput){
                 case 1:
-                    excel.viewLinksMethod();
+                    excel.viewLinks();
                     break;
                 case 2:
-                    excel.enterNewLinksMethod();
+                    excel.enterNewLinks();
                     break;
                 case 3:
-                    excel.deleteLinksMethod();
+                    excel.deleteLinks();
                     break;
                 case 0:
                     break;

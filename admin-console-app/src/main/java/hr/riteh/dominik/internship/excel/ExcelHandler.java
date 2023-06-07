@@ -3,7 +3,7 @@ package hr.riteh.dominik.internship.excel;
 import java.io.IOException;
 
 public interface ExcelHandler {
-    void enterNewLinksMethod() throws IOException;
-    void deleteLinksMethod() throws IOException;
-    void viewLinksMethod() throws IOException;
+    void enterNewLinks() throws IOException;
+    void deleteLinks() throws IOException;
+    void viewLinks() throws IOException;
 }

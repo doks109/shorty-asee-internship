@@ -11,7 +11,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 
 public class ExcelManager implements ExcelHandler {
-    public void enterNewLinksMethod() throws IOException {
+    public void enterNewLinks() throws IOException {
         String userInputString;
         Scanner inputString = new Scanner(System.in);
         System.out.println("Now you can enter your link: ");
@@ -33,16 +33,10 @@ public class ExcelManager implements ExcelHandler {
             Row row = firstSheet.createRow(rowNumber);
             for (int j = 0; j < 3; j++) {
                 XSSFCell cell = (XSSFCell) row.createCell(j);
-                switch(j){
-                    case 0:
-                        cell.setCellValue(rowNumber);
-                        break;
-                    case 1:
-                        cell.setCellValue(userInputString);
-                        break;
-                    case 2:
-                        cell.setCellValue(RandomGenerator.getAlphaNumericString());
-                        break;
+                switch (j) {
+                    case 0 -> cell.setCellValue(rowNumber);
+                    case 1 -> cell.setCellValue(userInputString);
+                    case 2 -> cell.setCellValue(RandomGenerator.getAlphaNumericString());
                 }
             }
         System.out.println("Link was successfully added!\n");
@@ -52,9 +46,9 @@ public class ExcelManager implements ExcelHandler {
         xssfworkbook.close();
         os.close();
     }
-    public void deleteLinksMethod() throws IOException {
+    public void deleteLinks() throws IOException {
         Scanner inputID = new Scanner(System.in);
-        int IdToDelete, flag = 1;
+        int IdToDelete, linkFound = 1;
         System.out.println("Please enter ID of the link you want to delete");
         IdToDelete = inputID.nextInt();
 
@@ -66,17 +60,17 @@ public class ExcelManager implements ExcelHandler {
             XSSFCell cell = (XSSFCell) row.getCell(0);
             int lastRowNum = firstSheet.getLastRowNum();
             if((int)cell.getNumericCellValue() == IdToDelete){
-                flag = 0;
+                linkFound = 0;
             }
-            if(flag == 0 && i < lastRowNum && i >= 0) {
+            if(linkFound == 0 && i < lastRowNum) {
                 firstSheet.shiftRows(i + 1, i + 2, -1, true, true);
                 break;
-            } else if(flag == 0 && i == lastRowNum){
+            } else if(linkFound == 0 && i == lastRowNum){
                 firstSheet.removeRow(row);
             }
         }
         // adjusting ID numbers
-        if(flag == 0){
+        if(linkFound == 0){
             for (int i = IdToDelete; i < firstSheet.getPhysicalNumberOfRows(); i++) {
                 Row row = firstSheet.getRow(i);
                 XSSFCell cell = (XSSFCell) row.getCell(0);
@@ -84,7 +78,7 @@ public class ExcelManager implements ExcelHandler {
             }
             System.out.println("Link was successfully deleted!\n");
         }
-        if(flag == 1) System.out.println("There is no link with that ID, please try again!\n");
+        if(linkFound == 1) System.out.println("There is no link with that ID, please try again!\n");
 
         File file = new File("shorty_entries.xlsx");
         FileOutputStream os = new FileOutputStream(file);
@@ -92,9 +86,9 @@ public class ExcelManager implements ExcelHandler {
         xssfworkbook.close();
         os.close();
     }
-    public void viewLinksMethod() throws IOException {
-        String helper, ID = "ID", originalUrl = "Original URL", shortenedUrl = "Shortened URL";
-        int maxWidth, flag = 0;
+    public void viewLinks() throws IOException {
+        String rowLength, ID = "ID", originalUrl = "Original URL", shortenedUrl = "Shortened URL";
+        int maxWidth, cellIdentifier = 0;
 
         XSSFWorkbook xssfworkbook = WorkbookUtil.openWorkbookMethod();
         Sheet firstSheet = xssfworkbook.getSheetAt(0);
@@ -103,9 +97,9 @@ public class ExcelManager implements ExcelHandler {
         maxWidth = originalUrl.length();
         for (int i = 0; i < firstSheet.getPhysicalNumberOfRows(); i++) {
             Row row = firstSheet.getRow(i);
-            helper = String.valueOf(row.getCell(1));
-            if(helper.length() > maxWidth){
-                maxWidth = helper.length();
+            rowLength = String.valueOf(row.getCell(1));
+            if(rowLength.length() > maxWidth){
+                maxWidth = rowLength.length();
             }
         }
         // header print
@@ -122,12 +116,12 @@ public class ExcelManager implements ExcelHandler {
             while (cells.hasNext()) {
                 XSSFCell cell = (XSSFCell) cells.next();
                 CellType type = cell.getCellType();
-                if ((type == CellType.STRING) && flag == 0) {
+                if ((type == CellType.STRING) && cellIdentifier == 0) {
                     System.out.format("| %-" + (maxWidth + 1) + "s", cell.getStringCellValue());
-                    flag = 1;
+                    cellIdentifier = 1;
                 } else if ((type == CellType.STRING)) {
                     System.out.format("| %-14s |", cell.getStringCellValue());
-                    flag = 0;
+                    cellIdentifier = 0;
                 } else if (type == CellType.NUMERIC) {
                     System.out.format("| %-8s", (int)cell.getNumericCellValue());
                 }
