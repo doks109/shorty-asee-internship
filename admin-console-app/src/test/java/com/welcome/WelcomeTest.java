@@ -1,5 +1,6 @@
 package com.welcome;
 
+import hr.riteh.dominik.internship.welcome.Welcome;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.io.*;

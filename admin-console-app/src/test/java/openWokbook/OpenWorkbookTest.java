@@ -1,5 +1,6 @@
 package openWokbook;
 
+import hr.riteh.dominik.internship.util.WorkbookUtil;
 import org.junit.jupiter.api.Test;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -14,7 +15,7 @@ public class OpenWorkbookTest {
         File testFile = File.createTempFile("test_workbook", ".xlsx");
         testFile.deleteOnExit();
 
-        XSSFWorkbook workbook = OpenWorkbook.openWorkbookMethod();
+        XSSFWorkbook workbook = WorkbookUtil.openWorkbookMethod();
         assertNotNull(workbook);
         Sheet sheet = workbook.getSheetAt(0);
         assertNotNull(sheet);

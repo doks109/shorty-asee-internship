@@ -1,11 +1,10 @@
-package openWokbook;
+package hr.riteh.dominik.internship.util;
 
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 import java.io.*;
 
-public class OpenWorkbook {
+public class WorkbookUtil {
     public static XSSFWorkbook openWorkbookMethod () throws IOException {
         XSSFWorkbook xssfworkbook;
         Sheet firstSheet;

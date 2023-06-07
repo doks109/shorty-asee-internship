@@ -1,5 +1,6 @@
 package viewLinks;
 
+import hr.riteh.dominik.internship.excel.ExcelManager;
 import org.junit.jupiter.api.Test;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -17,7 +18,8 @@ public class ViewLinksTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
 
-        ViewLinks.viewLinksMethod();
+        ExcelManager excel = new ExcelManager();
+        excel.viewLinks();
 
         System.setOut(System.out);
 
