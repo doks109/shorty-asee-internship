@@ -47,10 +47,10 @@ public class ExcelManager implements ExcelHandler {
         os.close();
     }
     public void deleteLinks() throws IOException {
-        Scanner inputID = new Scanner(System.in);
-        int IdToDelete, linkFound = 1;
+        Scanner inputId = new Scanner(System.in);
+        int idToDelete, linkFound = 1;
         System.out.println("Please enter ID of the link you want to delete");
-        IdToDelete = inputID.nextInt();
+        idToDelete = inputId.nextInt();
 
         XSSFWorkbook xssfworkbook = WorkbookUtil.openWorkbookMethod();
         Sheet firstSheet = xssfworkbook.getSheetAt(0);
@@ -59,7 +59,7 @@ public class ExcelManager implements ExcelHandler {
             Row row = firstSheet.getRow(i);
             XSSFCell cell = (XSSFCell) row.getCell(0);
             int lastRowNum = firstSheet.getLastRowNum();
-            if((int)cell.getNumericCellValue() == IdToDelete){
+            if((int)cell.getNumericCellValue() == idToDelete){
                 linkFound = 0;
             }
             if(linkFound == 0 && i < lastRowNum) {
@@ -71,7 +71,7 @@ public class ExcelManager implements ExcelHandler {
         }
         // adjusting ID numbers
         if(linkFound == 0){
-            for (int i = IdToDelete; i < firstSheet.getPhysicalNumberOfRows(); i++) {
+            for (int i = idToDelete; i < firstSheet.getPhysicalNumberOfRows(); i++) {
                 Row row = firstSheet.getRow(i);
                 XSSFCell cell = (XSSFCell) row.getCell(0);
                 cell.setCellValue(i);
@@ -87,7 +87,7 @@ public class ExcelManager implements ExcelHandler {
         os.close();
     }
     public void viewLinks() throws IOException {
-        String rowLength, ID = "ID", originalUrl = "Original URL", shortenedUrl = "Shortened URL";
+        String rowLength, id = "ID", originalUrl = "Original URL", shortenedUrl = "Shortened URL";
         int maxWidth, cellIdentifier = 0;
 
         XSSFWorkbook xssfworkbook = WorkbookUtil.openWorkbookMethod();
@@ -103,7 +103,7 @@ public class ExcelManager implements ExcelHandler {
             }
         }
         // header print
-        System.out.format("| %-8s| %-"+(maxWidth + 1)+"s| %-14s |\n", ID, originalUrl, shortenedUrl);
+        System.out.format("| %-8s| %-"+(maxWidth + 1)+"s| %-14s |\n", id, originalUrl, shortenedUrl);
         System.out.print("|---------|");
         for (int i = 0; i < (maxWidth + 2); i++) {
             System.out.print("-");
