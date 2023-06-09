@@ -1,0 +1,67 @@
+openapi: 3.0.3
+info:
+  description: shorty_asee_internship API
+  title: shorty_asee_internship API
+  version: 1.0.0
+servers:
+- url: https://shorty_asee_internship
+paths:
+  /{shortenedUrl}:
+    get:
+      operationId: getShortenedUrl
+      parameters:
+      - explode: false
+        in: path
+        name: shortenedUrl
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RedirectView'
+          description: OK
+      summary: GET {shortenedUrl}
+      x-accepts: '*/*'
+components:
+  schemas:
+    ApplicationContext:
+      properties: {}
+      type: object
+    RedirectView:
+      example:
+        exposePathVariables: true
+        applicationContext: '{}'
+        hosts:
+        - hosts
+        - hosts
+        requestContextAttribute: requestContextAttribute
+        beanName: beanName
+        contentType: contentType
+        staticAttributes: staticAttributes
+        url: url
+      properties:
+        hosts:
+          items:
+            type: string
+          type: array
+        url:
+          type: string
+        contentType:
+          type: string
+        requestContextAttribute:
+          type: string
+        staticAttributes:
+          type: string
+        exposePathVariables:
+          type: boolean
+        beanName:
+          type: string
+        applicationContext:
+          properties: {}
+          type: object
+      type: object
+
