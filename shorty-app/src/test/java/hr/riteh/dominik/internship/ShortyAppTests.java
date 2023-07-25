@@ -1,10 +1,10 @@
-package hr.riteh.dominik.internship.shortyapp;
+package hr.riteh.dominik.internship;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ShortyAppApplicationTests {
+class ShortyAppTests {
 
     @Test
     void contextLoads() {

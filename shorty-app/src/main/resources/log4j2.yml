@@ -1,0 +1,28 @@
+Configuration:
+  name: Default
+  Properties:
+    Property:
+      name: log-path
+      value: logs
+
+  appenders:
+    Console:
+      name: LogToConsole
+      PatternLayout:
+        Pattern: "%d %p [%t] %c{1.} %m%n"
+    File:
+      name: LogToFile
+      fileName: logs/log4j2.log
+      PatternLayout:
+        pattern: "%d %p [%t] %c{1.} %m%n"
+  Loggers:
+    Logger:
+      - name: hr.riteh.dominik.internship
+        additivity: false
+        level: debug
+        AppenderRef:
+          - ref: LogToFile
+    Root:
+      level: debug
+      AppenderRef:
+        ref: LogToConsole

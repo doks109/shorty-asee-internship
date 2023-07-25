@@ -1,33 +1,31 @@
-package hr.riteh.dominik.internship.shortyapp;
+package hr.riteh.dominik.internship.controller;
 
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.Objects;
 import java.io.IOException;
+import java.util.Objects;
+import java.util.Properties;
 
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.web.servlet.view.RedirectView;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-
-
-@SpringBootApplication
 @RestController
-public class ShortyAppApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(ShortyAppApplication.class, args);
-    }
+public class RedirectController {
     @GetMapping("/{shortenedUrl}")
     @ResponseBody
     public RedirectView getShortenedUrl(@PathVariable String shortenedUrl) throws IOException {
-        File file = new File("shorty_entries.xlsx");
+        Properties prop = new Properties();
+        FileInputStream ip = new FileInputStream("application.yaml");
+        prop.load(ip);
+
+
+        File file = new File(prop.getProperty("excelFile"));
         FileInputStream inputStream = new FileInputStream(file);
         XSSFWorkbook xssfWorkbook = new XSSFWorkbook(inputStream);
         Sheet firstSheet = xssfWorkbook.getSheetAt(0);
@@ -39,7 +37,6 @@ public class ShortyAppApplication {
             }
         }
         xssfWorkbook.close();
-        return new RedirectView("/");
+        return new RedirectView("/error");
     }
-
 }
