@@ -15,7 +15,6 @@ public class CustomErrorController implements ErrorController {
     @GetMapping("/error")
     public ResponseEntity<String> handleError() {
         String htmlContent = "<html><head><style>img { max-width: 100%; height: auto; }</style></head><body><img src=\"https://blog.thomasnet.com/hubfs/shutterstock_774749455.jpg\" alt=\"Error Image\"></body></html>";
-
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.TEXT_HTML);
 
