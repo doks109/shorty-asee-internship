@@ -1,0 +1,10 @@
+2023-08-19T13:39:12.362+02:00  INFO 15148 --- [main] hr.riteh.dominik.internship.ShortyApp    : Starting ShortyApp using Java 17.0.7 with PID 15148 (C:\Users\krusv\IdeaProjects\shorty-asee-internship\shorty-app\target\classes started by krusv in C:\Users\krusv\IdeaProjects\shorty-asee-internship)
+2023-08-19T13:39:12.366+02:00 DEBUG 15148 --- [main] hr.riteh.dominik.internship.ShortyApp    : Running with Spring Boot v3.1.0, Spring v6.0.9
+2023-08-19T13:39:12.367+02:00  INFO 15148 --- [main] hr.riteh.dominik.internship.ShortyApp    : No active profile set, falling back to 1 default profile: "default"
+2023-08-19T13:39:12.932+02:00  INFO 15148 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8081 (http)
+2023-08-19T13:39:12.939+02:00  INFO 15148 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-08-19T13:39:12.939+02:00  INFO 15148 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-08-19T13:39:13.000+02:00  INFO 15148 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-08-19T13:39:13.001+02:00  INFO 15148 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 602 ms
+2023-08-19T13:39:13.234+02:00  INFO 15148 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8081 (http) with context path ''
+2023-08-19T13:39:13.241+02:00  INFO 15148 --- [main] hr.riteh.dominik.internship.ShortyApp    : Started ShortyApp in 1.189 seconds (process running for 2.82)

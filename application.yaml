@@ -1,0 +1,16 @@
+server:
+  address: 127.0.0.1
+  port: 8081
+dataSource: excel
+excelFile: shorty_entries.xlsx
+
+spring:
+  application:
+    name: shortyApp
+
+logging:
+  level:
+    hr.riteh.dominik.internship: debug
+  file:
+    path: './logs'
+    name: ${logging.file.path}/${spring.application.name}.log
